@@ -36,3 +36,14 @@ cc_test(
         "//middleware/data:data",
     ],
 )
+
+cc_test(
+    name = "test_middleware_engine",
+    srcs = ["test_middleware_engine.cpp"],
+    deps = [
+        "//middleware/core:middleware_engine",
+        "//middleware/simulator:mock_simulator",
+        "//middleware/ipc:udp_adapter",
+        "//middleware/data:data",
+    ],
+)
