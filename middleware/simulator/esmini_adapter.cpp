@@ -28,15 +28,34 @@ bool EsminiAdapter::initialize() {
         return true;
     }
     
-    // SE_Init parameters:
-    // - scenario file
-    // - use_viewer (0 = headless, 1 = with graphics)
-    // - threads (0 = no threading)
-    // - record (0 = no recording)
-    // - headstart_time (0 = no headstart)
-    int useViewer = headless_ ? 0 : 1;
+    // Use SE_InitWithArgs for explicit control over viewer window
+    std::vector<const char*> args;
+    args.push_back("esmini");  // Application name
+    args.push_back("--osc");
+    args.push_back(scenarioFile_.c_str());
     
-    if (SE_Init(scenarioFile_.c_str(), useViewer, 0, 0, 0) != 0) {
+    if (!headless_) {
+        // Explicitly add window arguments when viewer is requested
+        args.push_back("--window");
+        args.push_back("60");
+        args.push_back("60");
+        args.push_back("1024");
+        args.push_back("768");
+    } else {
+        args.push_back("--headless");
+    }
+    
+    if (disableControllers_) {
+        args.push_back("--disable_controllers");
+    }
+    
+    std::cout << "Initializing esmini with arguments: ";
+    for (const char* arg : args) {
+        std::cout << arg << " ";
+    }
+    std::cout << "\n";
+    
+    if (SE_InitWithArgs(static_cast<int>(args.size()), args.data()) != 0) {
         std::cerr << "Failed to initialize esmini with scenario: " << scenarioFile_ << "\n";
         return false;
     }
@@ -66,6 +85,13 @@ bool EsminiAdapter::initialize() {
 
 bool EsminiAdapter::step(double dt) {
     if (!initialized_ || !running_) {
+        return false;
+    }
+    
+    // Check if user requested quit (e.g., pressed ESC in viewer)
+    if (SE_GetQuitFlag() != 0) {
+        std::cout << "Esmini quit flag detected, stopping simulation\n";
+        running_ = false;
         return false;
     }
     

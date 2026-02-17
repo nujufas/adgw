@@ -110,6 +110,9 @@ void MiddlewareEngine::run() {
     if (config_.enableLogging) {
         std::cout << "Middleware Engine stopped" << std::endl;
     }
+    
+    // Clean up when exiting main loop
+    stop();
 }
 
 void MiddlewareEngine::stop() {
@@ -151,7 +154,9 @@ void MiddlewareEngine::mainLoopIteration() {
     double stepTime = stepEndTime - stepStartTime;
     
     if (!stepped) {
-        std::cerr << "Warning: Simulator step failed" << std::endl;
+        std::cerr << "Simulator step failed, stopping engine" << std::endl;
+        running_.store(false);
+        return;
     }
     
     // Check if step time exceeded limit

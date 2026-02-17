@@ -143,6 +143,38 @@ else
 fi
 echo ""
 
+# Test 8: Visualization test (with viewer)
+echo "Test 8: Visualization Test"
+echo "---------------------------"
+echo "Note: This test requires X11/graphics support"
+echo "Starting esmini with viewer for 5 seconds..."
+
+# Check if DISPLAY is set (indicates graphical environment)
+if [ -z "$DISPLAY" ]; then
+    echo "⚠ WARNING: DISPLAY not set, skipping visualization test"
+    echo "  (Test would fail in headless environment)"
+else
+    # Run with viewer for 5 seconds
+    timeout 5 ./bazel-bin/examples/esmini_demo scenarios/acc_test.xosc --viewer > /tmp/phase7_viz.log 2>&1 || true
+    
+    # Check if it started successfully
+    if grep -q "EsminiAdapter initialized successfully" /tmp/phase7_viz.log; then
+        echo "✓ PASSED: esmini viewer started"
+        
+        if grep -q "Headless: no" /tmp/phase7_viz.log; then
+            echo "✓ PASSED: Viewer mode confirmed"
+        else
+            echo "✗ FAILED: Viewer mode not confirmed"
+            exit 1
+        fi
+    else
+        echo "✗ FAILED: esmini with viewer did not initialize"
+        cat /tmp/phase7_viz.log | tail -20
+        exit 1
+    fi
+fi
+echo ""
+
 # Summary
 echo "========================================"
 echo "Phase 7 Test Summary"
