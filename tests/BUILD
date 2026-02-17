@@ -27,3 +27,12 @@ cc_test(
         "//middleware/data:data",
     ],
 )
+
+cc_test(
+    name = "test_udp_adapter",
+    srcs = ["test_udp_adapter.cpp"],
+    deps = [
+        "//middleware/ipc:udp_adapter",
+        "//middleware/data:data",
+    ],
+)
