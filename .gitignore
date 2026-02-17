@@ -42,10 +42,6 @@ cmake-build-*/
 *.idb
 *.pdb
 
-# Core dumps
-core
-core.*
-
 # IDE and Editor files
 .vscode/
 .idea/
@@ -162,3 +158,4 @@ ENV/
 
 # Bazel MODULE.bazel.lock (optional - some prefer to commit this)
 # MODULE.bazel.lock
+log.txt

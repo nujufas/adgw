@@ -23,10 +23,23 @@ cc_library(
 )
 
 cc_library(
+    name = "esmini_adapter",
+    srcs = ["esmini_adapter.cpp"],
+    hdrs = ["esmini_adapter.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":simulator_interface",
+        "//middleware/data:data",
+        "//third_party/esmini:esminiLib",
+    ],
+)
+
+cc_library(
     name = "simulator",
     visibility = ["//visibility:public"],
     deps = [
         ":simulator_interface",
         ":mock_simulator",
+        ":esmini_adapter",
     ],
 )

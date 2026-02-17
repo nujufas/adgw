@@ -9,3 +9,16 @@ cc_binary(
         "//middleware/ipc:udp_adapter",
     ],
 )
+
+cc_binary(
+    name = "esmini_demo",
+    srcs = ["esmini_demo.cpp"],
+    data = [
+        "//third_party/esmini:resources",
+    ],
+    deps = [
+        "//middleware/core:middleware_engine",
+        "//middleware/simulator:esmini_adapter",
+        "//middleware/ipc:udp_adapter",
+    ],
+)
