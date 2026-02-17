@@ -18,3 +18,12 @@ cc_binary(
         "//middleware/data:data",
     ],
 )
+
+cc_test(
+    name = "test_mock_simulator",
+    srcs = ["test_mock_simulator.cpp"],
+    deps = [
+        "//middleware/simulator:mock_simulator",
+        "//middleware/data:data",
+    ],
+)
