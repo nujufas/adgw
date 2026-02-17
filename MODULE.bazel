@@ -1,0 +1,10 @@
+###############################################################################
+# Bazel Bzlmod configuration for sim_middleware
+###############################################################################
+
+module(
+    name = "sim_middleware",
+    version = "1.0.0",
+)
+
+bazel_dep(name = "rules_cc", version = "0.0.16")

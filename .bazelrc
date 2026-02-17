@@ -1,0 +1,27 @@
+# Bazel configuration for sim_middleware
+
+# C++ standard
+build --cxxopt=-std=c++17
+build --host_cxxopt=-std=c++17
+
+# Compiler warnings
+build --cxxopt=-Wall
+build --cxxopt=-Wextra
+build --cxxopt=-Wpedantic
+
+# Optimization flags
+build:opt --cxxopt=-O3
+build:opt --cxxopt=-DNDEBUG
+
+# Debug flags
+build:dbg --cxxopt=-g
+build:dbg --cxxopt=-O0
+
+# Use optimization by default
+build --compilation_mode=opt
+
+# Color output
+common --color=yes
+
+# Show test output on failure
+test --test_output=errors
