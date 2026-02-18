@@ -1,1 +1,0 @@
-"../../bin/esmini" --window 60 60 1024 576  --osc ../../resources/xosc/ltap-od.xosc --camera_mode flex 

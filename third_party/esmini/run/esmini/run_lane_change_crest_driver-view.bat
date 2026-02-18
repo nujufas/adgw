@@ -1,1 +1,0 @@
-"../../bin/esmini" --window 60 60 1024 576  --osc ../../resources/xosc/lane_change_crest.xosc --camera_mode driver

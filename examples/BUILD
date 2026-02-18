@@ -1,5 +1,6 @@
 load("@rules_cc//cc:defs.bzl", "cc_binary")
 
+# bazel build "//examples:simple_demo"
 cc_binary(
     name = "simple_demo",
     srcs = ["simple_demo.cpp"],
@@ -10,6 +11,7 @@ cc_binary(
     ],
 )
 
+# bazel build "//examples:esmini_demo"
 cc_binary(
     name = "esmini_demo",
     srcs = ["esmini_demo.cpp"],

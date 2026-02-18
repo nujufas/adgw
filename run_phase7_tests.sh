@@ -154,8 +154,11 @@ if [ -z "$DISPLAY" ]; then
     echo "⚠ WARNING: DISPLAY not set, skipping visualization test"
     echo "  (Test would fail in headless environment)"
 else
-    # Run with viewer for 5 seconds
-    timeout 5 ./bazel-bin/examples/esmini_demo scenarios/acc_test.xosc --viewer > /tmp/phase7_viz.log 2>&1 || true
+    ./bazel-bin/examples/esmini_demo scenarios/acc_test.xosc --viewer > /tmp/phase7_viz.log 2>&1 || true
+    ## Run with viewer for 5 seconds
+    #timeout 40 ./bazel-bin/examples/esmini_demo scenarios/acc_test.xosc --viewer > /tmp/phase7_viz.log 2>&1 || true
+    ## Run with viewer for 5 seconds (with -k 1 to force kill after 1 second if it doesn't stop)
+    #timeout -k 1 5 ./bazel-bin/examples/esmini_demo scenarios/acc_test.xosc --viewer > /tmp/phase7_viz.log 2>&1 || true
     
     # Check if it started successfully
     if grep -q "EsminiAdapter initialized successfully" /tmp/phase7_viz.log; then

@@ -57,11 +57,24 @@ Comprehensive test suite covering:
 
 ```bash
 # Ubuntu/Debian
-sudo apt install build-essential
+sudo apt install build-essential unzip curl
 
 # Bazel (if not already installed)
 # Visit https://bazel.build/install for installation instructions
 ```
+
+### Setup Third-Party Dependencies
+
+Before building, download and extract the esmini simulator library:
+
+```bash
+# Run the setup script to download esmini
+./scripts/setup_esmini.sh
+```
+
+This will download esmini v2.59.0 from GitHub and extract it to `third_party/esmini/`.
+
+**Note**: The esmini files are not committed to the repository. You must run the setup script after cloning.
 
 ### Building
 

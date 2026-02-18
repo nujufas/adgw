@@ -159,3 +159,7 @@ ENV/
 # Bazel MODULE.bazel.lock (optional - some prefer to commit this)
 # MODULE.bazel.lock
 log.txt
+
+# Third-party dependencies (downloaded by setup scripts)
+third_party/esmini/*
+!third_party/esmini/BUILD

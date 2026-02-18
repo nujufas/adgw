@@ -1,1 +1,0 @@
-"../../bin/esmini" --window 60 60 1024 576  --osc ../../resources/xosc/synch_with_steady_state.xosc --camera_mode flex-orbit --trail_mode 2

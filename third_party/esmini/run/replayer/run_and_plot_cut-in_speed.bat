@@ -1,2 +1,0 @@
-"../../bin/esmini" --headless --disable_controllers --osc ../../resources/xosc/cut-in.xosc --disable_controllers --record simulation.dat --fixed_timestep 0.01
-python "../../scripts/plot_dat.py" --x_axis time --param speed simulation.dat
