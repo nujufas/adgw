@@ -1,0 +1,75 @@
+/*
+ * Franca IDL file for ACC Services
+ * 
+ * This file defines the service interfaces for the Adaptive Cruise Control (ACC) application
+ * Interface definitions for SOME/IP communication with esmini middleware
+ */
+
+package com.kpit.acc.services
+
+<** @description: ACC Input Service Interface - receives vehicle and target information from esmini **>
+interface accInputServiceInterface {
+    version { major 1 minor 0 }
+    
+    <** @description: ACC ECU Command **>
+    attribute Double ACC_ECU_CMD readonly
+    
+    <** @description: Engine Speed in rad/s **>
+    attribute Double EnSpd_radps readonly
+    
+    <** @description: System Power Mode **>
+    attribute Double SysPwrMd readonly
+    
+    <** @description: Target Position in meters **>
+    attribute Double Trgt_Px_m readonly
+    
+    <** @description: Target Velocity in m/s **>
+    attribute Double Trgt_Vx_mps readonly
+    
+    <** @description: Target Speed in m/s **>
+    attribute Double Trgt_spd_mps readonly
+    
+    <** @description: Target Status **>
+    attribute Double Trgt_status readonly
+    
+    <** @description: Vehicle Path Radius in meters **>
+    attribute Double Veh_PathRadius_m readonly
+    
+    <** @description: Vehicle Acceleration in m/s^2 **>
+    attribute Double Veh_accel_mps2 readonly
+    
+    <** @description: Vehicle Speed in m/s **>
+    attribute Double Veh_spd_mps readonly
+}
+
+<** @description: ACC Output Service Interface - provides control outputs to middleware **>
+interface accOutputServiceInterface {
+    version { major 1 minor 0 }
+    
+    <** @description: ACC Set Speed **>
+    attribute Float ACC_Set_spd readonly
+    
+    <** @description: Gap Control Enable **>
+    attribute Float Gap_Ctr_Enable readonly
+    
+    <** @description: Headway Gap **>
+    attribute Float Headway_Gap readonly
+    
+    <** @description: Headway Gap Setting **>
+    attribute Float Headway_Gap_set readonly
+    
+    <** @description: Target Distance Gap **>
+    attribute Float Tgt_Dist_Gap readonly
+    
+    <** @description: Target Time Gap **>
+    attribute Float Tgt_time_Gap readonly
+    
+    <** @description: Time Gap Setting **>
+    attribute Float Time_Gap_set readonly
+    
+    <** @description: Torque Enable **>
+    attribute Boolean Trq_en readonly
+    
+    <** @description: Acceleration for Torque **>
+    attribute Double a_x_for_trq readonly
+}

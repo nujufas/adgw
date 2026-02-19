@@ -1,0 +1,154 @@
+/*
+ * Franca Deployment file for ACC Services (SOME/IP)
+ * 
+ * This file defines the SOME/IP deployment configuration for the ACC interfaces
+ * Configure service IDs, instance IDs, method IDs, event IDs, and serialization
+ */
+
+import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-4-SOMEIP_deployment_spec.fdepl"
+import "../fidl/accServices.fidl"
+
+// Deployment specification for ACC Input Service Interface
+define org.genivi.commonapi.someip.deployment for interface com.kpit.acc.services.accInputServiceInterface {
+    SomeIpServiceID = 4660  // 0x1234
+    
+    attribute ACC_ECU_CMD {
+        SomeIpGetterID = 3000
+        SomeIpNotifierID = 33001
+        SomeIpEventGroups = { 33001 }
+    }
+    
+    attribute EnSpd_radps {
+        SomeIpGetterID = 3001
+        SomeIpNotifierID = 33002
+        SomeIpEventGroups = { 33001 }
+    }
+    
+    attribute SysPwrMd {
+        SomeIpGetterID = 3002
+        SomeIpNotifierID = 33003
+        SomeIpEventGroups = { 33001 }
+    }
+    
+    attribute Trgt_Px_m {
+        SomeIpGetterID = 3003
+        SomeIpNotifierID = 33004
+        SomeIpEventGroups = { 33001 }
+    }
+    
+    attribute Trgt_Vx_mps {
+        SomeIpGetterID = 3004
+        SomeIpNotifierID = 33005
+        SomeIpEventGroups = { 33001 }
+    }
+    
+    attribute Trgt_spd_mps {
+        SomeIpGetterID = 3005
+        SomeIpNotifierID = 33006
+        SomeIpEventGroups = { 33001 }
+    }
+    
+    attribute Trgt_status {
+        SomeIpGetterID = 3006
+        SomeIpNotifierID = 33007
+        SomeIpEventGroups = { 33001 }
+    }
+    
+    attribute Veh_PathRadius_m {
+        SomeIpGetterID = 3007
+        SomeIpNotifierID = 33008
+        SomeIpEventGroups = { 33001 }
+    }
+    
+    attribute Veh_accel_mps2 {
+        SomeIpGetterID = 3008
+        SomeIpNotifierID = 33009
+        SomeIpEventGroups = { 33001 }
+    }
+  
+    attribute Veh_spd_mps {
+        SomeIpGetterID = 3009
+        SomeIpNotifierID = 33010
+        SomeIpEventGroups = { 33001 }
+    }
+}
+
+// Deployment specification for ACC Output Service Interface
+define org.genivi.commonapi.someip.deployment for interface com.kpit.acc.services.accOutputServiceInterface {
+    SomeIpServiceID = 4661  // 0x1235
+    
+    attribute ACC_Set_spd {
+        SomeIpGetterID = 3100
+        SomeIpNotifierID = 33101
+        SomeIpEventGroups = { 33101 }
+    }
+    
+    attribute Gap_Ctr_Enable {
+        SomeIpGetterID = 3101
+        SomeIpNotifierID = 33102
+        SomeIpEventGroups = { 33101 }
+    }
+    
+    attribute Headway_Gap {
+        SomeIpGetterID = 3102
+        SomeIpNotifierID = 33103
+        SomeIpEventGroups = { 33101 }
+    }
+    
+    attribute Headway_Gap_set {
+        SomeIpGetterID = 3103
+        SomeIpNotifierID = 33104
+        SomeIpEventGroups = { 33101 }
+    }
+    
+    attribute Tgt_Dist_Gap {
+        SomeIpGetterID = 3104
+        SomeIpNotifierID = 33105
+        SomeIpEventGroups = { 33101 }
+    }
+    
+    attribute Tgt_time_Gap {
+        SomeIpGetterID = 3105
+        SomeIpNotifierID = 33106
+        SomeIpEventGroups = { 33101 }
+    }
+    
+    attribute Time_Gap_set {
+        SomeIpGetterID = 3106
+        SomeIpNotifierID = 33107
+        SomeIpEventGroups = { 33101 }
+    }
+    
+    attribute Trq_en {
+        SomeIpGetterID = 3107
+        SomeIpNotifierID = 33108
+        SomeIpEventGroups = { 33101 }
+    }
+    
+    attribute a_x_for_trq {
+        SomeIpGetterID = 3108
+        SomeIpNotifierID = 33109
+        SomeIpEventGroups = { 33101 }
+    }
+}
+
+// Provider deployment specification
+define org.genivi.commonapi.someip.deployment for provider as accInputProvider {
+    instance com.kpit.acc.services.accInputServiceInterface {
+        InstanceId = "acc.input.service"
+        SomeIpInstanceID = 1
+        SomeIpUnicastAddress = "127.0.0.1"
+        SomeIpReliableUnicastPort = 30501
+        SomeIpUnreliableUnicastPort = 0
+    }
+}
+
+define org.genivi.commonapi.someip.deployment for provider as accOutputProvider {
+    instance com.kpit.acc.services.accOutputServiceInterface {
+        InstanceId = "acc.output.service"
+        SomeIpInstanceID = 1
+        SomeIpUnicastAddress = "127.0.0.1"
+        SomeIpReliableUnicastPort = 30502
+        SomeIpUnreliableUnicastPort = 0
+    }
+}
